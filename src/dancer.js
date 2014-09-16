@@ -6,18 +6,23 @@ var Dancer = function(top, left, timeBetweenSteps){
   this.timeBetweenSteps = timeBetweenSteps;
 
   // use jQuery to create an HTML <span> tag
-  this.$node = $('<span class="dancer"></span>');
+  //this.$node;// = $('<span class="dancer"></span>');
   this.step();
   this.setPosition(top, left);
 };
 
+Dancer.prototype.lineUp = function() {
+  var randX = Math.floor(Math.random() * 1000);
+  var styleSettings = {
+    top:  400,
+    left:  randX
+  };
+  this.$node.css(styleSettings);
+};
 
 Dancer.prototype.step = function(){
-  // the basic dancer doesn't do anything interesting at all on each step,
-    // it just schedules the next step
-
     var recurse = this.step.bind(this);
-    setTimeout(recurse, this.timeBetweenSteps);
+    setTimeout(recurse, 1000);
 };
 
 Dancer.prototype.setPosition = function(){
@@ -27,7 +32,5 @@ Dancer.prototype.setPosition = function(){
     };
     this.$node.css(styleSettings);
 };
-
-
 
 
